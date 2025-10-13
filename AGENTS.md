@@ -1,5 +1,10 @@
 # Repository Guidelines
 
+## Agent Editing Constraints
+- Only modify files within `./app` and `./lib`.
+- Do not edit any files under `./app/api/auth/*` or the file at `./lib/db.ts`.
+- Never read from or assign to `process.env`; import `getCloudflareContext` from `@opennextjs/cloudflare` and destructure `env` via `const { env } = getCloudflareContext();` for synchronous code or `const { env } = await getCloudflareContext({ async: true });` when inside an `async` execution path, then reference bindings as `env.MY_BINDING`.
+
 ## Project Structure & Module Organization
 - `app/` hosts the Next.js App Router; `page.tsx` is the default landing view and `app/api/auth/[...nextauth]/route.ts` exposes the Auth.js handler.
 - `lib/` contains database wiring; use `lib/db.ts` for cached D1 clients and adjust tables in `lib/schema/d1.ts` when the Auth.js model changes.
