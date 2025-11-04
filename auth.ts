@@ -1,8 +1,8 @@
 import NextAuth from "next-auth"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import { getDb } from "./lib/db"
+import { getDbAsync } from "./lib/db"
 
-const db = getDb()
+const db = await getDbAsync()
  
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
