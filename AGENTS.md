@@ -1,8 +1,6 @@
 # Repository Guidelines
 
 ## Agent Editing Constraints
-- Only modify files within `./app` and `./lib`. In particular, do not edit `./drizzle`.
-- Do not edit any files under `./app/api/auth/*` or the file at `./lib/db.ts`.
 - Never read from or assign to `process.env`; import `getCloudflareContext` from `@opennextjs/cloudflare` and destructure `env` via `const { env } = getCloudflareContext();` for synchronous code or `const { env } = await getCloudflareContext({ async: true });` when inside an `async` execution path, then reference bindings as `env.MY_BINDING`.
 
 ## Project Structure & Module Organization

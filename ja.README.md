@@ -27,6 +27,12 @@ git clone https://github.com/gubbai/cf-next-authjs-drizzle-d1 PROJECT_NAME
 
 を任意のプロジェクト名に変更。
 
+## AUTH_URLの設定
+
+```.dev.vars
+AUTH_URL=http://localhost:3000
+```
+
 ## Authjs Secret の生成
 
 ```
