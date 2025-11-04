@@ -27,6 +27,14 @@ Change the following to any project name you like:
 * `name` in `wrangler.jsonc`
 * `name` in `package.json`
 
+## Configure AUTH_URL
+
+```.dev.vars
+AUTH_URL=http://localhost:3000
+```
+
+Set this in `.dev.vars` so Auth.js callbacks resolve to your local development URL.
+
 ## Generate Authjs Secret
 
 ```
