@@ -19,7 +19,7 @@ pnpm drizzle-kit migrate --config drizzle-prod.config.ts
 ## Clone the Repository
 
 ```
-git clone https://github.com/gubbai/cf-next-authjs-drizzle-d1 PROJECT_NAME
+git clone https://github.com/gubbai/cf-next-betterauth-drizzle-d1 PROJECT_NAME
 ```
 
 Change the following to any project name you like:
