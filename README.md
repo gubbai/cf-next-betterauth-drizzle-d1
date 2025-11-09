@@ -5,15 +5,15 @@
 Operate local D1
 
 ```
-pnpm exec drizzle-kit generate --config drizzle-dev.config.ts
-pnpm exec drizzle-kit migrate --config drizzle-dev.config.ts
+pnpm drizzle-kit generate --config drizzle-dev.config.ts
+pnpm drizzle-kit migrate --config drizzle-dev.config.ts
 ```
 
 Operate remote D1
 
 ```
-pnpm exec drizzle-kit generate --config drizzle-prod.config.ts
-pnpm exec drizzle-kit migrate --config drizzle-prod.config.ts
+pnpm drizzle-kit generate --config drizzle-prod.config.ts
+pnpm drizzle-kit migrate --config drizzle-prod.config.ts
 ```
 
 ## Clone the Repository
@@ -30,7 +30,7 @@ Change the following to any project name you like:
 ## Configure AUTH_URL
 
 ```.dev.vars
-AUTH_URL=http://localhost:3000
+BETTER_AUTH_URL=http://localhost:3000
 ```
 
 Set this in `.dev.vars` so Auth.js callbacks resolve to your local development URL.
@@ -42,13 +42,13 @@ pnpm dlx auth secret
 ```
 
 When you run this, `AUTH_SECRET` will be generated in `.env.local`.
-Copy and paste the generated value into `.dev.vars`.
+Copy and paste the generated value into `.dev.vars` as `BETTER_AUTH_SECRET`.
 After that, you may delete `.env.local`.
 
 ## Create D1
 
 ```
-pnpm dlx wrangler d1 create DB_NAME
+pnpm wrangler d1 create DB_NAME
 ```
 
 ```
@@ -57,13 +57,13 @@ pnpm dlx wrangler d1 create DB_NAME
 ```
 
 ```
-pnpm run cf-typegen
+pnpm cf-typegen
 ```
 
 ## drizzle-kit Configuration (for Local Development)
 
 ```
-pnpm dlx wrangler d1 execute DB_NAME --command "select 0;"
+pnpm wrangler d1 execute DB_NAME --command "select 0;"
 ```
 
 When you run this, a `.sqlite` file will be generated under `.wrangler/state/v3/d1/`.
@@ -88,3 +88,11 @@ Example: `https://dash.cloudflare.com/cdaf0708f65b4c60b3c0c19bc3b56d27/home/doma
 
 `CLOUDFLARE_D1_TOKEN`: Generate it at [https://dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens).
 Choose "Custom Token" and set 'Permissions' to `Account`, `D1`, `Edit` (and others if necessary).
+
+## *@better-auth/cli*
+
+```
+pnpm dlx @better-auth/cli generate --config better-auth.config.ts --output lib/schema/d1.ts
+```
+
+Already executed.

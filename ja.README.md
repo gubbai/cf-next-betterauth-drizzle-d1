@@ -5,15 +5,15 @@
 ローカルのD1を操作する
 
 ```
-pnpm exec drizzle-kit generate --config drizzle-dev.config.ts
-pnpm exec drizzle-kit migrate --config drizzle-dev.config.ts
+pnpm drizzle-kit generate --config drizzle-dev.config.ts
+pnpm drizzle-kit migrate --config drizzle-dev.config.ts
 ```
 
 リモートのD1を操作する
 
 ```
-pnpm exec drizzle-kit generate --config drizzle-prod.config.ts
-pnpm exec drizzle-kit migrate --config drizzle-prod.config.ts
+pnpm drizzle-kit generate --config drizzle-prod.config.ts
+pnpm drizzle-kit migrate --config drizzle-prod.config.ts
 ```
 
 ## リポジトリをclone
@@ -30,7 +30,7 @@ git clone https://github.com/gubbai/cf-next-authjs-drizzle-d1 PROJECT_NAME
 ## AUTH_URLの設定
 
 ```.dev.vars
-AUTH_URL=http://localhost:3000
+BETTER_AUTH_URL=http://localhost:3000
 ```
 
 ## Authjs Secret の生成
@@ -40,13 +40,13 @@ pnpm dlx auth secret
 ```
 
 これを実行すると、`.env.local` に `AUTH_SECRET` が生成されます。
-生成された値を `.dev.vars` にコピー＆ペーストしてください。
+生成された値を `.dev.vars` に`BETTER_AUTH_SECRET`としてコピー＆ペーストしてください。
 その後、`.env.local` は削除してかまいません。
 
 ## D1を作成
 
 ```
-pnpm dlx wrangler d1 create DB_NAME
+pnpm wrangler d1 create DB_NAME
 ```
 
 ```
@@ -55,13 +55,13 @@ pnpm dlx wrangler d1 create DB_NAME
 ```
 
 ```
-pnpm run cf-typegen
+pnpm cf-typegen
 ```
 
 ## drizzle-kitの設定（ローカル開発用）
 
 ```
-pnpm dlx wrangler d1 execute DB_NAME --command "select 0;"
+pnpm wrangler d1 execute DB_NAME --command "select 0;"
 ```
 
 実行すると`.wrangler/state/v3/d1/`に`.sqlite`ファイルが生成されるので、以下のように`.env`に記述します（`.dev.vars`ではない）。
@@ -86,3 +86,11 @@ CLOUDFLARE_D1_TOKEN=ACWfgzmTnSzFrJutMYiPaxjqAhBaWhLxuMkbXQQF
 
 `CLOUDFLARE_D1_TOKEN`: https://dash.cloudflare.com/profile/api-tokens で生成。
 'Custom Token'で'Permissions'は`Account`, `D1`, `Edit`（必要に応じてAccount以外でも可）
+
+## *`@better-auth/cli`
+
+```
+pnpm dlx @better-auth/cli generate --config better-auth.config.ts --output lib/schema/d1.ts
+```
+
+を実行済み。
