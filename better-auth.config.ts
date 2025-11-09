@@ -3,7 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { drizzle } from 'drizzle-orm/libsql';
 
 const db = drizzle({ connection: {
-  url: process.env.DATABASE_URL!,
+  url: "file:" + process.env.DB_FILE_NAME!,
 }});
 
 export const auth = betterAuth({
